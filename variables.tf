@@ -19,7 +19,3 @@ variable "private_subnets" {
     type = list(string)
   
 }
-variable "instance_type" {
-    description = "instace type for various worksapces"
-    type = map(string)
-}

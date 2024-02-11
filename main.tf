@@ -45,11 +45,21 @@ module "eks" {
       max_size     = 3
       desired_size = 1
 
-      instance_types = lookup(var.instance_type, terraform.workspace, "t2.medium")
+      instance_types = ["t2.medium"]
     
     }
   }
 
 
  
+}
+
+resource "aws_instance" "my_instance" {
+  ami           = "ami-053b0d53c279acc90"
+  instance_type = "t2.micro"
+
+  tags = {
+    Secret = data.vault_kv_secret_v2.secret1.data["secret1"] #testing "to read secrets from vault"
+    
+  }
 }
